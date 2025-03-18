@@ -6,18 +6,21 @@ import java.sql.SQLException;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.tobi.dao.NuserDAO;
+import com.example.tobi.dao2.ConnectionMaker;
+import com.example.tobi.dao2.DConnectionMaker;
+import com.example.tobi.dao2.UserDAO;
 import com.example.tobi.vo.User;
 
 @SpringBootApplication
 public class TobiApplication {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		
-		NuserDAO dao = new NuserDAO();
+		ConnectionMaker connectionMaker = new DConnectionMaker();
+		UserDAO dao = new UserDAO(connectionMaker);
 		
 		User user = new User();
-		user.setId("user002");
-		user.setName("user002");
+		user.setId("user005");
+		user.setName("user005");
 		user.setPassword("1234");
 		
 		dao.add(user);
